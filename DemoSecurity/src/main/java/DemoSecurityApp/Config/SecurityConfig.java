@@ -43,7 +43,8 @@ public class SecurityConfig
         http.formLogin(Customizer.withDefaults());
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        (authorize) -> authorize.anyRequest().authenticated()).build();
+                        (authorize) -> authorize.requestMatchers("/api/auth/**").permitAll()
+                                .anyRequest().authenticated()).build();
     }
 
 //       @Bean
